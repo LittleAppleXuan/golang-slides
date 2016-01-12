@@ -1,0 +1,94 @@
+编写第一个 Go 程序
+
+何李石, 七牛
+
+* 设置工作目录 $GOPATH/src
+
+
+设置 $GOPATH: 
+
+.play chapter1/export.sh
+
+工作目录:
+
+.play chapter1/workdir.sh
+
+
+* 引入该本地包
+
+.play chapter1/sub.go
+
+
+* 引入第三方包
+
+.play chapter1/3rd.go
+
+安装该包: 
+
+.play chapter1/3rd.sh
+
+* 多个包
+
+.play chapter1/multi-package.sh
+
+* 如何运行一个程序
+
+.play chapter1/run.sh
+
+* 也可以编译执行
+
+.play chapter1/build.sh
+
+* 将一个包拆分成多个文件
+
+.play chapter1/multi-files.sh
+
+* 运行 or 编译
+
+.play chapter1/run-multi-files.sh
+
+* 将一个包拆分成多个子包
+
+.play chapter1/sub-package.sh
+
+调用 & 运行
+
+.play chapter1/sub-package-main.sh
+
+* 创建第三方库
+
+.play chapter1/3rd-for-reuse.sh
+
+生成文件: $GOPATH/pkg/<arch>/util.a
+
+* 下载第三方包
+
+.play chapter1/download-pkg.sh
+
+下载并安装到本地
+
+.play chapter1/download-install-pkg.sh
+
+* 编写测试
+
+* 待测试包: division.go
+
+.play chapter1/division/division.go
+
+* 测试包: division_test.go
+
+.play chapter1/division/division_test.go
+
+* 目录结构
+
+.play chapter1/division/testing.sh
+
+* 原则
+
+- 测试包的文件名必须以 `_test.go` 结尾，和被测试的包在同一个目录下
+- 测试包必须 `import testing` 这个包
+- 所有的测试用例函数必须是 `Test` 开头
+- 测试用例会按照源代码中写的 *顺序* 依次执行
+- 测试函数 `TestXxx()` 的参数是 `testing.T`, 可以使用该类型来记录错误或者是测试状态
+- 测试格式：func TestXxx (t *testing.T), 其中 `Xxx` 部分可以为任意的字母数字的组合，但是首字母不能是小写字母[a-z]，例如 `Testintdiv` 是错误的函数名。
+- 函数中通过调用 `testing.T` 的 `Error`, `Errorf`, `FailNow`, `Fatal`, `FatalIf` 方法说明测试不通过，调用 `Log` 方法用来记录测试的信息

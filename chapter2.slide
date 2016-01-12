@@ -1,0 +1,105 @@
+类型系统
+
+何李石, 七牛
+
+* 大纲
+
+- 字符串
+- 数字类型
+- 数组
+- 切片
+- map
+- 指针
+- 结构体
+
+* 常量定义
+.play chapter2/const.go
+
+* 变量定义
+
+.play chapter2/vars.go
+
+* 字符串
+.play chapter2/string.go
+
+
+* 数字类型
+
+- 无符号数: uint8, uint16, uint32, uint64
+- 有符号数: int8, int16, int32, int64
+- 浮点数: float32, float64
+- 复数: complex64, complex128
+- 其它: byte(uint8 的别名), rune(int32 的别名，用来存储 Unicode)
+rune 示例: 
+
+.play chapter2/rune.go
+		
+* 数组
+
+- 长度是类型的一部分，不可变
+	
+示例:
+
+var a [5]int
+fmt.Println("Length: ", len(a))
+		
+* 切片
+
+- 底层为数组，但是可变长
+- 比数组更为实用
+
+.play chapter2/slice.go
+
+	
+* 映射 map
+
+- 一个"键-值"对
+- 关键点：注意并发读写情况，上锁
+- 不能对未初始化的 map 进行写，会抛异常（panic）
+- 对于迭代操作，每次结果可能不一致（乱序）
+
+.play chapter2/map.go
+
+
+* make() 内建方法只能用于创建 slice, map 和 channel 
+
+- slice, map, channel 是指向底层数据结构的引用，使用前必须被初始化
+
+* 指针
+
+- Go 有指针，但是没有指针运算。你不能 用指针变量遍历字符串的各个字节。
+- Go 指针只是一种引用。
+- 取址操作符 & 获取变量存放地址，可以赋给一个指针。
+
+* 结构体（自定义变量）
+
+* 创建自己定义的类型
+
+.play chapter2/struct.go
+
+* 方法定义
+
+.play chapter2/struct-method.go
+
+* 匿名字段
+
+.play chapter2/anonymous-field.go
+
+* 方法继承
+
+.play chapter2/method-inherit.go
+
+* 方法覆盖
+
+给类型 B 添加一个方法覆盖类型 S 中的 String()
+
+.play chapter2/method-overlay.go
+
+* 字节对齐
+
+.play chapter2/alignment.go
+
+
+
+
+
